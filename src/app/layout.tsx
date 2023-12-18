@@ -1,4 +1,3 @@
-import { ClerkProvider } from "@clerk/nextjs";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
@@ -19,15 +18,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <ClerkProvider>
-      <Providers>
-        <html lang="en">
-          <body className={`font-mono h-full`}>
-            {children}
-            <Toaster />
-          </body>
-        </html>
-      </Providers>
-    </ClerkProvider>
+    <Providers>
+      <html lang="en">
+        <body className={`font-mono h-full`}>
+          {children}
+          <Toaster />
+        </body>
+      </html>
+    </Providers>
   );
 }
