@@ -15,6 +15,7 @@ export default function ThalaResponse({ chats }: ThalaResponseProps) {
           sysMsg={chat.systemContent}
           userMsg={chat.userContent}
           userId={chat.userId}
+          key={chat.userId}
         />
       ))}
     </div>

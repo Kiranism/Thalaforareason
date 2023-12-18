@@ -18,7 +18,7 @@ export default function ThalaResponseCard({
     <Card>
       <Link href={`/t/${userId}`}>
         <CardHeader>
-          <p className="text-xl font-bold text-center">"{userMsg}"</p>
+          <p className="text-xl font-bold text-center">&quot;{userMsg}&quot;</p>
         </CardHeader>
         <CardContent>
           <p className="text-sm truncate">{sysMsg}</p>

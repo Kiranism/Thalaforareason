@@ -15,7 +15,9 @@ export default function ThalaCard({ userMsg, sysMsg, userId }: ThalaCardProps) {
   return (
     <Card className="w-[340px] md:w-[448px] ">
       <CardHeader className="flex flex-row items-center p-2 justify-between">
-        <p className="text-xl font-bold first-letter:uppercase">"{userMsg}"</p>
+        <p className="text-xl font-bold first-letter:uppercase">
+          &quot;{userMsg}&quot;
+        </p>
         <div>
           <ShareActions userId={userId} />
         </div>

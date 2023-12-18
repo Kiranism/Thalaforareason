@@ -27,7 +27,7 @@ export default async function Home({ params }: { params: { id: string } }) {
               Thala for {chats.length} Reason
             </h1>
             <p>
-              This app is made with love, dedicated to India's legendary
+              This app is made with love, dedicated to India&apos;s legendary
               captain, Ms. Dhoni.
             </p>
           </div>

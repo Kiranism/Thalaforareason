@@ -111,8 +111,9 @@ export function ThalaForm({ initialPrompt, initialChats }: ThalaFormProps) {
             if (index % 2 === 0) result.push(array.slice(index, index + 2));
             return result;
           }, [])
-          .map((pair) => (
+          .map((pair, index) => (
             <ThalaCard
+              key={index}
               userId={chatId}
               userMsg={
                 pair[0].role === "user" ? pair[0]?.content : pair[1]?.content
