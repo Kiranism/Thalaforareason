@@ -9,7 +9,7 @@ export default function Celebration({
 }) {
   return (
     <>
-      {!isExploading && (
+      {isExploading && (
         <ConfettiExplosion width={4000} particleCount={200} duration={3000} />
       )}
     </>
