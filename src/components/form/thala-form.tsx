@@ -11,7 +11,7 @@ import { Button, buttonVariants } from "../ui/button";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { PlusIcon } from "lucide-react";
-
+import { useReactToPrint } from "react-to-print";
 interface ThalaFormProps {
   initialPrompt?: string;
   initialChats?: any;
@@ -22,6 +22,7 @@ type role = "user" | "assistant" | "system" | "function";
 export function ThalaForm({ initialPrompt, initialChats }: ThalaFormProps) {
   const submitRef = useRef<React.ElementRef<"button">>(null);
   const [isExploding, setIsExploding] = React.useState(false);
+
   const router = useRouter();
   const chatId = nanoid();
 
@@ -51,21 +52,29 @@ export function ThalaForm({ initialPrompt, initialChats }: ThalaFormProps) {
     audio.play();
   };
 
-  const { input, handleInputChange, handleSubmit, messages, isLoading } =
-    useChat({
-      api: "/api/chat",
-      body: {
-        chatId,
-      },
-      initialMessages: mapRawMessageToMessage(initialChats),
-      initialInput: initialPrompt ?? "",
-      onResponse: (response) => {
-        setIsExploding(true);
-        playAudio();
-      },
-    });
+  const {
+    input,
+    handleInputChange,
+    handleSubmit,
+    messages,
+    isLoading,
+    data,
+    metadata,
+  } = useChat({
+    api: "/api/chat",
+    body: {
+      chatId,
+    },
+    initialMessages: mapRawMessageToMessage(initialChats),
+    initialInput: initialPrompt ?? "",
+    onResponse: (response) => {
+      console.log("res", response);
+      setIsExploding(true);
+      playAudio();
+    },
+  });
 
-  console.log("messgaes", messages);
+  console.log("messgaes", messages, data);
 
   return (
     <div className="flex gap-4 flex-col">
@@ -95,7 +104,7 @@ export function ThalaForm({ initialPrompt, initialChats }: ThalaFormProps) {
           <Link
             href={"/"}
             className={cn(
-              "text-white text-xs w-full flex items-center gap-2 justify-end "
+              "text-white text-xs w-full flex items-center gap-1 justify-end mx-1 "
             )}
           >
             Add New <PlusIcon className="w-4 h-4" />
@@ -114,7 +123,7 @@ export function ThalaForm({ initialPrompt, initialChats }: ThalaFormProps) {
           .map((pair, index) => (
             <ThalaCard
               key={index}
-              userId={chatId}
+              userId={initialChats ? initialChats.userId : data[0]?.chatId}
               userMsg={
                 pair[0].role === "user" ? pair[0]?.content : pair[1]?.content
               }

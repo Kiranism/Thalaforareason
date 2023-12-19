@@ -1,6 +1,11 @@
 import { db } from "@/lib/db";
 import { messages as _messages } from "@/lib/db/schema";
-import { Message, OpenAIStream, StreamingTextResponse } from "ai";
+import {
+  Message,
+  OpenAIStream,
+  StreamingTextResponse,
+  experimental_StreamData,
+} from "ai";
 import { Configuration, OpenAIApi } from "openai-edge";
 export const runtime = "edge";
 
@@ -42,7 +47,12 @@ export async function POST(req: Request) {
       messages: [prompt, lastMessage],
       stream: true,
     });
+
+    const data = new experimental_StreamData();
+
     const stream = OpenAIStream(response, {
+      experimental_streamData: true,
+
       onStart: async () => {
         // save user message into db
         // await db.insert(_messages).values({
@@ -60,7 +70,10 @@ export async function POST(req: Request) {
         });
       },
     });
-    return new StreamingTextResponse(stream);
+    data.append({
+      chatId,
+    });
+    return new StreamingTextResponse(stream, { status: 201 }, data);
   } catch (error) {
     console.log("some error happended in chatCompletion", error);
   }

@@ -1,9 +1,11 @@
+"use client";
 import React from "react";
 import { Card, CardContent, CardDescription, CardHeader } from "./ui/card";
 import Image from "next/image";
 import { Button } from "./ui/button";
 import { ShareIcon } from "lucide-react";
 import ShareActions from "./ShareActions";
+import { useReactToPrint } from "react-to-print";
 
 type ThalaCardProps = {
   userMsg: string;
@@ -12,14 +14,18 @@ type ThalaCardProps = {
 };
 
 export default function ThalaCard({ userMsg, sysMsg, userId }: ThalaCardProps) {
+  const componentRef = React.useRef<HTMLDivElement>(null);
+  const handlePrint = useReactToPrint({
+    content: () => (componentRef.current ? componentRef.current : null),
+  });
   return (
-    <Card className="w-[340px] md:w-[448px] ">
+    <Card ref={componentRef} className="w-full md:w-[448px] print:w-[448px] ">
       <CardHeader className="flex flex-row items-center p-2 justify-between">
         <p className="text-xl font-bold first-letter:uppercase">
           &quot;{userMsg}&quot;
         </p>
         <div>
-          <ShareActions userId={userId} />
+          <ShareActions userId={userId} handlePrint={handlePrint} />
         </div>
       </CardHeader>
       <CardContent>

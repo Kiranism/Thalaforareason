@@ -84,3 +84,9 @@ select {
 input:-webkit-autofill {
   -webkit-text-fill-color: white !important;
 }
+
+/* @media print {
+  @page {
+    size: 400px ;
+  }
+} */

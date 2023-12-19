@@ -1,10 +1,17 @@
 "use client";
 import React from "react";
 import { Button } from "./ui/button";
-import { ShareIcon } from "lucide-react";
+import { DownloadIcon, ShareIcon } from "lucide-react";
 import { useToast } from "./ui/use-toast";
+import { useReactToPrint } from "react-to-print";
 
-export default function ShareActions({ userId }: { userId: string }) {
+export default function ShareActions({
+  userId,
+  handlePrint,
+}: {
+  userId: string;
+  handlePrint: () => void;
+}) {
   const { toast } = useToast();
   const handleCopyLink = () => {
     navigator.clipboard.writeText(
@@ -14,11 +21,15 @@ export default function ShareActions({ userId }: { userId: string }) {
       title: "Link Copied to Clickboard",
     });
   };
+
   return (
-    <div>
+    <div className="gap-1 flex">
       <Button variant={"outline"} size={"iconsm"} onClick={handleCopyLink}>
         <ShareIcon className="w-4 h-4" />
       </Button>
+      {/* <Button variant={"outline"} size={"iconsm"} onClick={handlePrint}>
+        <DownloadIcon className="w-4 h-4" />
+      </Button> */}
     </div>
   );
 }

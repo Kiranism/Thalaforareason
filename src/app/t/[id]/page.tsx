@@ -3,6 +3,7 @@ import { ThalaForm } from "@/components/form/thala-form";
 import { db } from "@/lib/db";
 import { messages } from "@/lib/db/schema";
 import { desc, eq } from "drizzle-orm";
+
 export const dynamic = "force-dynamic";
 
 export default async function Home({ params }: { params: { id: string } }) {

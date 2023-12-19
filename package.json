@@ -47,6 +47,7 @@
     "react-confetti-explosion": "^2.1.2",
     "react-dom": "18.2.0",
     "react-dropzone": "^14.2.3",
+    "react-to-print": "^2.14.15",
     "react-wrap-balancer": "^1.1.0",
     "tailwind-merge": "^1.14.0",
     "tailwind-scrollbar": "^3.0.5",
