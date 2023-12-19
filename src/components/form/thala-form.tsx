@@ -98,13 +98,16 @@ export function ThalaForm({ initialPrompt, initialChats }: ThalaFormProps) {
             }
           }}
           placeholder="Thala For a Reason"
-          className="bg-transparent text-white placeholder:text-gray-400 ring-0 outline-none resize-none py-2.5 px-2 font-mono text-sm h-10 w-full transition-all duration-300"
+          className={cn(
+            initialPrompt && "truncate",
+            "bg-transparent text-white placeholder:text-gray-400 ring-0 outline-none resize-none py-2.5 px-2 font-mono text-sm h-10 w-full transition-all duration-300"
+          )}
         />
         {initialPrompt ? (
           <Link
             href={"/"}
             className={cn(
-              "text-white text-xs w-full flex items-center gap-1 justify-end mx-1 "
+              "text-white text-xs w-36 flex items-center gap-1 justify-end mx-1 "
             )}
           >
             Add New <PlusIcon className="w-4 h-4" />
