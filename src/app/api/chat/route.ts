@@ -40,6 +40,7 @@ export async function POST(req: Request) {
       6. anything related to msdhoni should be written as thala for a reason and the instructions are clear.
       7. let it be anything use your imagination to resolve them to show thala for a reason.
       8. Dont reply like what can i assit you today. Because its an end of coversation from you end. But use your imagination and reply with thala for a reason and the instructions are clear.
+      9. let it clear that use your imagination and find seven or 7 from the context and decode them and reply with thala for a reason.
         ${context}
         `,
     };
