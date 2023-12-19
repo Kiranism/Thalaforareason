@@ -26,7 +26,7 @@ export default function ThalaCard({ userMsg, sysMsg, userId }: ThalaCardProps) {
 
     const link = document.createElement("a");
     link.href = data;
-    link.download = "downloaded-image.jpg";
+    link.download = "thala7.jpg";
 
     document.body.appendChild(link);
     link.click();
