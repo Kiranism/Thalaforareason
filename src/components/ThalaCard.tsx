@@ -6,7 +6,7 @@ import { Button } from "./ui/button";
 import { ShareIcon } from "lucide-react";
 import ShareActions from "./ShareActions";
 import { useReactToPrint } from "react-to-print";
-
+import html2canvas from "html2canvas";
 type ThalaCardProps = {
   userMsg: string;
   sysMsg: string;
@@ -15,9 +15,27 @@ type ThalaCardProps = {
 
 export default function ThalaCard({ userMsg, sysMsg, userId }: ThalaCardProps) {
   const componentRef = React.useRef<HTMLDivElement>(null);
-  const handlePrint = useReactToPrint({
-    content: () => (componentRef.current ? componentRef.current : null),
-  });
+
+  const handlePrint = async () => {
+    if (!componentRef.current) return;
+
+    const canvas = await html2canvas(componentRef.current, {
+      removeContainer: true,
+    });
+    const data = canvas.toDataURL("image/jpg");
+
+    const link = document.createElement("a");
+    link.href = data;
+    link.download = "downloaded-image.jpg";
+
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  // const handlePrint = useReactToPrint({
+  //   content: () => (componentRef.current ? componentRef.current : null),
+  // });
   return (
     <Card ref={componentRef} className="w-full md:w-[448px] print:w-[448px] ">
       <CardHeader className="flex flex-row items-center p-2 justify-between">

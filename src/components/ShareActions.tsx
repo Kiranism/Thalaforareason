@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { Button } from "./ui/button";
-import { DownloadIcon, ShareIcon } from "lucide-react";
+import { DownloadIcon, Link, ShareIcon } from "lucide-react";
 import { useToast } from "./ui/use-toast";
 import { useReactToPrint } from "react-to-print";
 
@@ -25,11 +25,11 @@ export default function ShareActions({
   return (
     <div className="gap-1 flex">
       <Button variant={"outline"} size={"iconsm"} onClick={handleCopyLink}>
-        <ShareIcon className="w-4 h-4" />
+        <Link className="w-4 h-4" />
       </Button>
-      {/* <Button variant={"outline"} size={"iconsm"} onClick={handlePrint}>
+      <Button variant={"outline"} size={"iconsm"} onClick={handlePrint}>
         <DownloadIcon className="w-4 h-4" />
-      </Button> */}
+      </Button>
     </div>
   );
 }
