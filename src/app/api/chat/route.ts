@@ -42,6 +42,7 @@ export async function POST(req: Request) {
       7. let it be anything use your imagination to resolve them to show thala for a reason.
       8. Dont reply like what can i assit you today. Because its an end of coversation from your end. But use your imagination and reply with thala for a reason and the instructions are clear.
       9. let it clear that use your imagination and find seven or 7 from the context and decode them and reply with thala for a reason for example if its a 10 then 10-3 is 7.
+      10. if any word contains 7 letter (name, subject, object whatever) or if we add or substract any number with the exsiting word and if we get 7, then show thala for a reason.
         ${context}
         `,
     };
